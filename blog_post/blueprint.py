@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, url_for, redirect
 from werkzeug.utils import redirect
-from models import Post
+from models import Post, db
 
 
 blog_post = Blueprint('blog_post', __name__, url_prefix='/post')

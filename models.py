@@ -9,4 +9,10 @@ class Post(db.Model):
     author = db.Column(db.String(20))
     date_posted = db.Column(db.DateTime(), default=datetime.now())
     content = db.Column(db.Text)
-    
+
+def init_db():
+    db.create_all()
+
+
+if __name__ == '__main__':
+    init_db()
