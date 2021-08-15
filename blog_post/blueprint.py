@@ -1,5 +1,7 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, url_for, redirect
+from werkzeug.utils import redirect
 from models import Post
+
 
 blog_post = Blueprint('blog_post', __name__, url_prefix='/post')
 
@@ -12,7 +14,10 @@ def add():
         content = request.form['content']
 
         post = Post(title=title, subtitle=subtitle, author=author, content=content)
+        
+        db.session.add(post)
+        db.session.commit()
 
-        return f"<h1>{title}<br>{subtitle}<br>{author}<br>{content}</h1>"
+        return redirect(url_for('simple_page.index'))
 
     return render_template('add.html')
