@@ -21,3 +21,7 @@ def add():
         return redirect(url_for('simple_page.index'))
 
     return render_template('add.html')
+
+@blog_post.route('/<int:post_id>')
+def post(post_id):
+    return render_template('post.html')
