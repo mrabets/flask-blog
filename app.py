@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from simple_page.blueprint import simple_page
 from blog_post.blueprint import blog_post

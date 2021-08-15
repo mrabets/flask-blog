@@ -27,7 +27,7 @@
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="my-5">
-                    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                    <form name='addForm' id="addForm" method="POST"">
                         <div class="form-floating">
                             <input class="form-control" name='title' id="title" type="text" placeholder="Enter your title..." data-sb-validations="required" />
                             <label for="name">Title</label>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error adding post!</div></div>
                         <!-- Submit Button-->
-                        <button class="btn btn-primary text-uppercase disabled" id="submitButton" type="submit">Add</button>
+                        <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Add</button>
                     </form>
                 </div>
             </div>
