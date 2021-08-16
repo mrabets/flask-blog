@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, url_for, redirect
 from werkzeug.utils import redirect
-from models import Post, db
+from models import Post, Comment, db
 
 
 blog_post = Blueprint('blog_post', __name__, url_prefix='/post')
@@ -50,3 +50,15 @@ def delete(post_id):
     db.session.commit()
     
     return redirect(url_for('simple_page.index'))
+
+@blog_post.route('/<int:post_id>/add_comment', methods=('POST',))
+def add_comment(post_id):
+    username = request.form['username']
+    comment = request.form['comment']
+
+    comment = Comment(username=username, comment=comment, post_id=post_id)
+    
+    db.session.add(comment)
+    db.session.commit()
+
+    return redirect(url_for('blog_post.post', post_id=post_id))
