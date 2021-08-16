@@ -18,7 +18,7 @@ def add():
         db.session.add(post)
         db.session.commit()
 
-        return redirect(url_for('simple_page.index'))
+        return redirect(url_for('blog_post.index'))
 
     return render_template('add.html')
 
