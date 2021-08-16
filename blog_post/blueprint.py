@@ -22,8 +22,14 @@ def add():
 
     return render_template('add.html')
 
+@blog_post.route('/')
+def index():
+    posts = Post.query.all()
+
+    return render_template('index.html', posts=posts)
+
 @blog_post.route('/<int:post_id>')
 def post(post_id):
     post = Post.query.filter_by(id=post_id).one()
-    
+
     return render_template('post.html', post=post)
