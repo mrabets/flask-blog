@@ -38,6 +38,21 @@
                 <a class="btn btn-warning text-uppercase" href="{{ url_for('blog_post.edit', post_id=post.id) }}">Edit</a>
             </div>
         </div>
+        <form name='addForm' id="addForm" method="POST"">
+            <div class="form-floating">
+                <input class="form-control" name='title' id="title" type="text" placeholder="Enter your title..." data-sb-validations="required" />
+                <label for="name">Name</label>
+                <div class="invalid-feedback" data-sb-feedback="title:required">A name is required.</div>
+            </div>
+            <div class="form-floating">
+                <textarea class="form-control" name='content' id="content" placeholder="Enter your content here..." style="height: 12rem" data-sb-validations="required"></textarea>
+                <label for="message">Comment</label>
+                <div class="invalid-feedback" data-sb-feedback="content:required">A comment is required.</div>
+            </div>
+            <br />
+            <!-- Submit Button-->
+            <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Send</button>
+        </form>
     </div>
 </article>
 
