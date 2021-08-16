@@ -43,3 +43,10 @@ def edit(post_id):
         return redirect(url_for('simple_page.index'))
 
     return render_template('edit.html', post=post)
+
+@blog_post.route('/<int:post_id>/delete', methods=('POST',))
+def delete(post_id):
+    Post.query.filter_by(id=post_id).delete()
+    db.session.commit()
+    
+    return redirect(url_for('simple_page.index'))
