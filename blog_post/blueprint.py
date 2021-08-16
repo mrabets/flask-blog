@@ -18,7 +18,7 @@ def add():
         db.session.add(post)
         db.session.commit()
 
-        return redirect(url_for('blog_post.index'))
+        return redirect(url_for('simple_page.index'))
 
     return render_template('add.html')
 
@@ -27,3 +27,19 @@ def post(post_id):
     post = Post.query.filter_by(id=post_id).one()
 
     return render_template('post.html', post=post)
+
+@blog_post.route('/<int:post_id>/edit', methods=('GET', 'POST'))
+def edit(post_id):
+    post = Post.query.filter_by(id=post_id).one()
+    
+    if request.method == 'POST':
+        post.title = request.form['title']
+        post.subtitle = request.form['subtitle']
+        post.author = request.form['author']
+        post.content = request.form['content']
+        
+        db.session.commit()
+
+        return redirect(url_for('simple_page.index'))
+
+    return render_template('edit.html', post=post)

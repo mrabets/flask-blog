@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Edit Post {% endblock %}
+
+{% block page_header %}
+
+<header class="masthead" style="background-image: url('{{ url_for('static', filename='/assets/img/contact-bg.jpg') }}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>Edit Post</h1>
+                    <span class="subheading">Edit your post here</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+{% endblock %}
+        
+{% block content %}
+
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="my-5">
+                    <form name='addForm' id="addForm" method="POST"">
+                        <div class="form-floating">
+                            <input class="form-control" name='title' id="title" type="text" placeholder="Enter your title..." data-sb-validations="required" value="{{ request.form['title'] or post['title'] }}" />
+                            <label for="title">Title</label>
+                            <div class="invalid-feedback" data-sb-feedback="title:required">A title is required.</div>
+                        </div>
+                        <div class="form-floating">
+                            <input class="form-control" name='subtitle' id="subtitle" type="text" placeholder="Enter your subtitle..." data-sb-validations="required,email" value="{{ request.form['subtitle'] or post['subtitle'] }}" />
+                            <label for="subtitle">Subtitle</label>
+                            <div class="invalid-feedback" data-sb-feedback="subtitle:required">An subtitle is required.</div>
+                        </div>
+                        <div class="form-floating">
+                            <input class="form-control" name='author' id="author" type="text" placeholder="Enter author name..." data-sb-validations="required" value="{{ request.form['author'] or post['author'] }}" />
+                            <label for="author">Author</label>
+                            <div class="invalid-feedback" data-sb-feedback="author:required">An author name is required.</div>
+                        </div>
+                        <div class="form-floating">
+                            <textarea class="form-control" name='content' id="content" placeholder="Enter your content here..." style="height: 12rem" data-sb-validations="required" >{{ request.form['content'] or post['content'] }}</textarea>
+                            <label for="content">Blog Content</label>
+                            <div class="invalid-feedback" data-sb-feedback="content:required">A content is required.</div>
+                        </div>
+                        <br />
+                        <div class="d-none" id="submitSuccessMessage">
+                            <div class="text-center mb-3">
+                                <div class="fw-bolder">Blog editing successful!</div>
+                                To edit this post, sign up at
+                                <br />
+                                <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                            </div>
+                        </div>
+                        <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error editing post!</div></div>
+                        <!-- Submit Button-->
+                        <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Edit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
