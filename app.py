@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 
@@ -11,6 +11,7 @@ else:
     app.config.from_object("config.DevelopmentConfig")
 
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 from simple_page.blueprint import simple_page
 from blog_post.blueprint import blog_post
