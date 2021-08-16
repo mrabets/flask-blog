@@ -38,6 +38,24 @@
                 <a class="btn btn-warning text-uppercase" href="{{ url_for('blog_post.edit', post_id=post.id) }}">Edit</a>
             </div>
         </div>
+
+        {% for comment in comments %}
+            <!-- Post preview-->
+            <div class="post-preview">
+                <a href="{{ url_for('blog_post.post', post_id=post.id) }}">
+                    <h3 class="post-subtitle">{{ comment.comment }}</h3>
+                </a>
+                <p class="post-meta">
+                    Commented by
+                    <a href="#!">{{ comment.username }}</a>
+                    on {{ comment.date_commented.strftime('%B %d %Y, %H:%M') }}
+                </p>
+            </div>
+            <!-- Divider-->
+            <hr class="my-4" />
+            
+        {% endfor %}
+
         <form name='addForm' id="addForm" method="POST" action="{{ url_for('blog_post.add_comment', post_id=post.id) }}">
             <div class="form-floating">
                 <input class="form-control" name='username' id="username" type="text" placeholder="Enter your name..." data-sb-validations="required" />

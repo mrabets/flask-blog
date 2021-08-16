@@ -25,8 +25,9 @@ def add():
 @blog_post.route('/<int:post_id>')
 def post(post_id):
     post = Post.query.filter_by(id=post_id).one()
+    comments = Comment.query.filter_by(post_id=post_id).all()
 
-    return render_template('post.html', post=post)
+    return render_template('post.html', post=post, comments=comments)
 
 @blog_post.route('/<int:post_id>/edit', methods=('GET', 'POST'))
 def edit(post_id):
